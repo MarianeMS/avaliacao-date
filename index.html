@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avaliação Oficial do Date</title>
+
+<style>
+
+body{
+font-family: Arial, Helvetica, sans-serif;
+background: linear-gradient(135deg,#ffe6f0,#e6f7ff);
+margin:0;
+display:flex;
+align-items:center;
+justify-content:center;
+min-height:100vh;
+}
+
+.container{
+background:white;
+padding:30px;
+border-radius:15px;
+box-shadow:0 10px 25px rgba(0,0,0,0.15);
+max-width:600px;
+width:90%;
+}
+
+h1{
+text-align:center;
+margin-top:0;
+}
+
+.question{
+display:none;
+margin-top:20px;
+}
+
+.question.active{
+display:block;
+}
+
+button{
+width:100%;
+margin-top:10px;
+padding:12px;
+border:none;
+border-radius:8px;
+background:#f2f2f2;
+cursor:pointer;
+font-size:15px;
+transition:0.2s;
+}
+
+button:hover{
+background:#ddd;
+}
+
+#result{
+display:none;
+text-align:center;
+margin-top:20px;
+}
+
+img{
+max-width:200px;
+margin-top:20px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>📋 Avaliação Oficial do Primeiro Date</h1>
+<p style="text-align:center">Sistema de Feedback do Piquenique v1.0</p>
+
+
+<!-- PERGUNTA 1 -->
+
+<div class="question active">
+
+<h3>1. Como você avaliaria o piquenique?</h3>
+
+<button onclick="answer('piquenique','⭐⭐⭐⭐⭐')">⭐⭐⭐⭐⭐ — cinema demais</button>
+<button onclick="answer('piquenique','⭐⭐⭐⭐')">⭐⭐⭐⭐ — muito bom</button>
+<button onclick="answer('piquenique','⭐⭐⭐')">⭐⭐⭐ — aceitável</button>
+<button onclick="answer('piquenique','⭐⭐')">⭐⭐ — precisa de atualização</button>
+<button onclick="answer('piquenique','⭐')">⭐ — bug crítico detectado</button>
+
+</div>
+
+
+<!-- PERGUNTA 2 -->
+
+<div class="question">
+
+<h3>2. Se o nosso date fosse uma estética/vibe, qual seria?</h3>
+
+<button onclick="answer('vibe','diva pop')">🎤 Clipe de diva pop</button>
+<button onclick="answer('vibe','show underground')">🤘 Show underground</button>
+<button onclick="answer('vibe','ideia de tatuagem')">🖋️ Ideia de tatuagem</button>
+<button onclick="answer('vibe','final de tarde na praia')">🌊 Final de tarde na praia</button>
+<button onclick="answer('vibe','filme indie')">🎨 Cena de filme indie</button>
+<button onclick="answer('vibe','piquenique lore')">🍓 Piquenique que virou lore</button>
+
+</div>
+
+
+<!-- PERGUNTA 3 -->
+
+<div class="question">
+
+<h3>3. O beijo no final foi:</h3>
+
+<button onclick="answer('beijo','timing perfeito')">Timing perfeito</button>
+<button onclick="answer('beijo','demorou um pouco')">Demorou um pouco 😅</button>
+<button onclick="answer('beijo','plot twist')">Plot twist inesperado</button>
+<button onclick="answer('beijo','esperado')">Eu já estava esperando</button>
+
+</div>
+
+
+<!-- PERGUNTA 4 -->
+
+<div class="question">
+
+<h3>4. Qual foi o melhor momento?</h3>
+
+<button onclick="answer('momento','conversas')">As conversas aleatórias</button>
+<button onclick="answer('momento','piquenique')">O piquenique</button>
+<button onclick="answer('momento','beijo')">O beijo</button>
+<button onclick="answer('momento','tudo')">Tudo junto</button>
+
+</div>
+
+
+<!-- PERGUNTA FINAL -->
+
+<div class="question">
+
+<h3>5. Probabilidade de um segundo date:</h3>
+
+<button onclick="showResult(0)">0% — bloqueada imediatamente</button>
+<button onclick="showResult(25)">25% — talvez com comida</button>
+<button onclick="showResult(50)">50% — precisamos testar novamente</button>
+<button onclick="showResult(75)">75% — promissor</button>
+<button onclick="showResult(100)">100% — confirmado</button>
+
+</div>
+
+
+<!-- RESULTADO -->
+
+<div id="result">
+
+<h2 id="resultText"></h2>
+
+<p>Obrigado por participar da avaliação oficial do date.</p>
+<p>A desenvolvedora deste sistema possivelmente gostaria de te ver de novo 👀</p>
+
+<img src="gato.png" alt="gato timido">
+
+</div>
+
+</div>
+
+
+<script>
+
+let currentQuestion = 0;
+let questions = document.querySelectorAll(".question");
+let answers = {};
+
+function next(){
+
+questions[currentQuestion].classList.remove("active");
+currentQuestion++;
+questions[currentQuestion].classList.add("active");
+
+}
+
+function answer(question,value){
+
+answers[question] = value;
+next();
+
+}
+
+function showResult(value){
+
+answers.probabilidade = value;
+
+fetch("https://script.google.com/macros/s/AKfycbxR4nZrifpfp77LM21T0XI29-bPjR1kgy383nPRdKpy_ElHFj4QDlVgqyw90xqCeIgxVA/exec",{
+
+method:"POST",
+body:JSON.stringify(answers)
+
+})
+.then(res => res.json())
+.then(data => console.log(data))
+.catch(err => console.log(err));
+
+questions[currentQuestion].classList.remove("active");
+
+let result = document.getElementById("result");
+let text = document.getElementById("resultText");
+
+if(value >= 75){
+
+text.innerHTML = "💘 Sistema detectou alta compatibilidade.<br>Iniciando protocolo <b>SegundoDate.exe</b>";
+
+}
+
+else if(value == 50){
+
+text.innerHTML = "🧠 Resultado inconclusivo.<br>Mais testes científicos podem ser necessários.";
+
+}
+
+else{
+
+text.innerHTML = "⚠️ Compatibilidade baixa detectada.<br>Talvez outro piquenique resolva.";
+
+}
+
+result.style.display = "block";
+
+}
+
+</script>
+
+</body>
+</html>
