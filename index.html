@@ -176,8 +176,13 @@ answers.probabilidade = value;
 
 fetch("https://script.google.com/macros/s/AKfycbxR4nZrifpfp77LM21T0XI29-bPjR1kgy383nPRdKpy_ElHFj4QDlVgqyw90xqCeIgxVA/exec",{
 method:"POST",
-mode:"no-cors",
-body:new URLSearchParams(answers)
+body:new URLSearchParams({
+piquenique:answers.piquenique,
+vibe:answers.vibe,
+beijo:answers.beijo,
+momento:answers.momento,
+probabilidade:answers.probabilidade
+})
 });
 
 questions[currentQuestion].classList.remove("active");
