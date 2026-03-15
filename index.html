@@ -84,11 +84,11 @@ margin-top:20px;
 
 <h3>1. Como você avaliaria o piquenique?</h3>
 
-<button onclick="answer('piquenique','⭐⭐⭐⭐⭐')">⭐⭐⭐⭐⭐ — cinema demais</button>
-<button onclick="answer('piquenique','⭐⭐⭐⭐')">⭐⭐⭐⭐ — muito bom</button>
-<button onclick="answer('piquenique','⭐⭐⭐')">⭐⭐⭐ — aceitável</button>
-<button onclick="answer('piquenique','⭐⭐')">⭐⭐ — precisa de atualização</button>
-<button onclick="answer('piquenique','⭐')">⭐ — bug crítico detectado</button>
+<button onclick="answer('piquenique','5 estrelas')">⭐⭐⭐⭐⭐ — cinema demais</button>
+<button onclick="answer('piquenique','4 estrelas')">⭐⭐⭐⭐ — muito bom</button>
+<button onclick="answer('piquenique','3 estrelas')">⭐⭐⭐ — aceitável</button>
+<button onclick="answer('piquenique','2 estrelas')">⭐⭐ — precisa de atualização</button>
+<button onclick="answer('piquenique','1 estrela')">⭐ — bug crítico detectado</button>
 
 </div>
 
@@ -114,7 +114,7 @@ margin-top:20px;
 <h3>3. O beijo no final foi:</h3>
 
 <button onclick="answer('beijo','timing perfeito')">Timing perfeito</button>
-<button onclick="answer('beijo','demorou um pouco')">Demorou um pouco 😅</button>
+<button onclick="answer('beijo','demorou')">Demorou um pouco 😅</button>
 <button onclick="answer('beijo','plot twist')">Plot twist inesperado</button>
 <button onclick="answer('beijo','esperado')">Eu já estava esperando</button>
 
@@ -150,8 +150,6 @@ margin-top:20px;
 </div>
 
 
-<!-- RESULTADO -->
-
 <div id="result">
 
 <h2 id="resultText"></h2>
@@ -159,12 +157,11 @@ margin-top:20px;
 <p>Obrigado por participar da avaliação oficial do date.</p>
 <p>A desenvolvedora deste sistema possivelmente gostaria de te ver de novo 👀</p>
 
-<img src="gato.png" alt="gato timido">
+<img src="gato.png">
 
 </div>
 
 </div>
-
 
 <script>
 
@@ -173,30 +170,24 @@ let questions = document.querySelectorAll(".question");
 let answers = {};
 
 function next(){
-
 questions[currentQuestion].classList.remove("active");
 currentQuestion++;
 questions[currentQuestion].classList.add("active");
-
 }
 
 function answer(question,value){
-
 answers[question] = value;
 next();
-
 }
 
 function showResult(value){
 
 answers.probabilidade = value;
-fetch("https://script.google.com/macros/s/AKfycbxR4nZrifpfp77LM21T0XI29-bPjR1kgy383nPRdKpy_ElHFj4QDlVgqyw90xqCeIgxVA/exec", {
-  method: "POST",
-  body: new URLSearchParams(answers)
-})
-.then(response => response.text())
-.then(data => console.log(data))
-.catch(error => console.error(error));
+
+fetch("https://script.google.com/macros/s/AKfycbxR4nZrifpfp77LM21T0XI29-bPjR1kgy383nPRdKpy_ElHFj4QDlVgqyw90xqCeIgxVA/exec",{
+method:"POST",
+body:new URLSearchParams(answers)
+});
 
 questions[currentQuestion].classList.remove("active");
 
