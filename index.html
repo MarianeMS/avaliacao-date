@@ -185,8 +185,9 @@ function showResult(value){
 answers.probabilidade = value;
 
 fetch("https://script.google.com/macros/s/AKfycbxR4nZrifpfp77LM21T0XI29-bPjR1kgy383nPRdKpy_ElHFj4QDlVgqyw90xqCeIgxVA/exec",{
-method:"POST",
-body:new URLSearchParams(answers)
+  method:"POST",
+  mode:"no-cors",
+  body:new URLSearchParams(answers)
 });
 
 questions[currentQuestion].classList.remove("active");
