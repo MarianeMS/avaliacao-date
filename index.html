@@ -78,8 +78,6 @@ margin-top:20px;
 <p style="text-align:center">Sistema de Feedback do Piquenique v1.0</p>
 
 
-<!-- PERGUNTA 1 -->
-
 <div class="question active">
 
 <h3>1. Como você avaliaria o piquenique?</h3>
@@ -93,6 +91,8 @@ margin-top:20px;
 </div>
 
 
+<div class="question">
+
 <!-- PERGUNTA 2 -->
 
 <div class="question">
@@ -103,31 +103,26 @@ margin-top:20px;
 <button onclick="answer('vibe','ideia de tatuagem')">🖋️ Ideia de tatuagem — simples, mas com significado</button>
 <button onclick="answer('vibe','praia')">🌊 Final de tarde na praia — tranquilo e com boas conversas</button>
 <button onclick="answer('vibe','filme indie')">🎨 Cena de filme indie/artsy — estranho no começo, mas bonito</button>
-<button onclick="answer('vibe','piquenique lore')">🍓 Piquenique que virou lore — provavelmente vamos rir disso depois</button>
-</div>
+<button onclick="answer('vibe','piquenique lore')">🍓 Piquenique que virou lore — provavelmente vamos rir disso depois</button></div>
 
-
-<!-- PERGUNTA 3 -->
 
 <div class="question">
 
 <h3>3. O beijo no final foi:</h3>
 
 <button onclick="answer('beijo','timing perfeito')">Timing perfeito</button>
-<button onclick="answer('beijo','demorou')">Demorou um pouco 😅</button>
+<button onclick="answer('beijo','demorou')">Demorou um pouco</button>
 <button onclick="answer('beijo','plot twist')">Plot twist inesperado</button>
 <button onclick="answer('beijo','esperado')">Eu já estava esperando</button>
 
 </div>
 
 
-<!-- PERGUNTA 4 -->
-
 <div class="question">
 
 <h3>4. Qual foi o melhor momento?</h3>
 
-<button onclick="answer('momento','conversas')">As conversas aleatórias</button>
+<button onclick="answer('momento','conversas')">As conversas</button>
 <button onclick="answer('momento','piquenique')">O piquenique</button>
 <button onclick="answer('momento','beijo')">O beijo</button>
 <button onclick="answer('momento','tudo')">Tudo junto</button>
@@ -135,17 +130,15 @@ margin-top:20px;
 </div>
 
 
-<!-- PERGUNTA FINAL -->
-
 <div class="question">
 
 <h3>5. Probabilidade de um segundo date:</h3>
 
-<button onclick="showResult(0)">0% — bloqueada imediatamente</button>
-<button onclick="showResult(25)">25% — talvez com comida</button>
-<button onclick="showResult(50)">50% — precisamos testar novamente</button>
-<button onclick="showResult(75)">75% — promissor</button>
-<button onclick="showResult(100)">100% — confirmado</button>
+<button onclick="showResult(0)">0%</button>
+<button onclick="showResult(25)">25%</button>
+<button onclick="showResult(50)">50%</button>
+<button onclick="showResult(75)">75%</button>
+<button onclick="showResult(100)">100%</button>
 
 </div>
 
@@ -155,7 +148,6 @@ margin-top:20px;
 <h2 id="resultText"></h2>
 
 <p>Obrigado por participar da avaliação oficial do date.</p>
-<p>A desenvolvedora deste sistema possivelmente gostaria de te ver de novo 👀</p>
 
 <img src="gato.png">
 
@@ -185,9 +177,9 @@ function showResult(value){
 answers.probabilidade = value;
 
 fetch("https://script.google.com/macros/s/AKfycbxR4nZrifpfp77LM21T0XI29-bPjR1kgy383nPRdKpy_ElHFj4QDlVgqyw90xqCeIgxVA/exec",{
-  method:"POST",
-  mode:"no-cors",
-  body:new URLSearchParams(answers)
+method:"POST",
+mode:"no-cors",
+body:new URLSearchParams(answers)
 });
 
 questions[currentQuestion].classList.remove("active");
@@ -196,13 +188,13 @@ let result = document.getElementById("result");
 let text = document.getElementById("resultText");
 
 if(value >= 75){
-text.innerHTML = "💘 Sistema detectou alta compatibilidade.<br>Iniciando protocolo <b>SegundoDate.exe</b>";
+text.innerHTML = "💘 Sistema detectou alta compatibilidade";
 }
 else if(value == 50){
-text.innerHTML = "🧠 Resultado inconclusivo.<br>Mais testes científicos podem ser necessários.";
+text.innerHTML = "🧠 Resultado inconclusivo";
 }
 else{
-text.innerHTML = "⚠️ Compatibilidade baixa detectada.<br>Talvez outro piquenique resolva.";
+text.innerHTML = "⚠️ Compatibilidade baixa";
 }
 
 result.style.display = "block";
