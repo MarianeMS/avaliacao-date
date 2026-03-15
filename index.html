@@ -190,17 +190,13 @@ next();
 function showResult(value){
 
 answers.probabilidade = value;
-
-fetch("https://script.google.com/macros/s/AKfycbxR4nZrifpfp77LM21T0XI29-bPjR1kgy383nPRdKpy_ElHFj4QDlVgqyw90xqCeIgxVA/exec",{
-  method:"POST",
-  headers:{
-    "Content-Type":"application/json"
-  },
-  body:JSON.stringify(answers)
+fetch("https://script.google.com/macros/s/AKfycbxR4nZrifpfp77LM21T0XI29-bPjR1kgy383nPRdKpy_ElHFj4QDlVgqyw90xqCeIgxVA/exec", {
+  method: "POST",
+  body: new URLSearchParams(answers)
 })
-.then(res => res.json())
+.then(response => response.text())
 .then(data => console.log(data))
-.catch(err => console.error(err));
+.catch(error => console.error(error));
 
 questions[currentQuestion].classList.remove("active");
 
