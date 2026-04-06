@@ -9,12 +9,13 @@
 
 body{
 font-family: Arial, Helvetica, sans-serif;
-background: linear-gradient(135deg,#ffe6f0,#e6f7ff);
+background: rgb(182, 5, 167);
 margin:0;
 display:flex;
 align-items:center;
 justify-content:center;
 min-height:100vh;
+
 }
 
 .container{
@@ -31,13 +32,16 @@ text-align:center;
 margin-top:0;
 }
 
+/* ANIMAÇÃO */
 .question{
 display:none;
-margin-top:20px;
+opacity:0;
+transition:0.3s;
 }
 
 .question.active{
 display:block;
+opacity:1;
 }
 
 button{
@@ -65,6 +69,7 @@ margin-top:20px;
 img{
 max-width:200px;
 margin-top:20px;
+border-radius:10px;
 }
 
 </style>
@@ -74,60 +79,65 @@ margin-top:20px;
 
 <div class="container">
 
-<h1>📋 Avaliação Oficial do Primeiro Date</h1>
+<h1>📋 Avaliação Oficial do Date</h1>
 <p style="text-align:center">Sistema de Feedback do Piquenique v1.0</p>
 
 
+<!-- PERGUNTA 1 -->
 <div class="question active">
 
-<h3>1. Como você avaliaria o piquenique?</h3>
+<h3>1. Qual música seria a trilha sonora desse date?</h3>
 
-<button onclick="answer('piquenique','5 estrelas')">⭐⭐⭐⭐⭐ — cinema demais</button>
-<button onclick="answer('piquenique','4 estrelas')">⭐⭐⭐⭐ — muito bom</button>
-<button onclick="answer('piquenique','3 estrelas')">⭐⭐⭐ — aceitável</button>
-<button onclick="answer('piquenique','2 estrelas')">⭐⭐ — precisa de atualização</button>
-<button onclick="answer('piquenique','1 estrela')">⭐ — bug crítico detectado</button>
+<button onclick="answer('musica','bts_soft')">💜 BTS vibes suaves (tipo “Euphoria”)</button>
+<button onclick="answer('musica','bts_energy')">🔥 BTS energia alta (tipo “Mic Drop”)</button>
+<button onclick="answer('musica','indie')">🎧 Indie aleatório que ninguém conhece</button>
+<button onclick="answer('musica','lofi')">🌙 Lo-fi de fundo + conversa infinita</button>
+<button onclick="answer('musica','caos')">🤯 Playlist completamente caótica</button>
 
 </div>
 
 
 <!-- PERGUNTA 2 -->
-
-<div class="question">
-<h3>2. Se o nosso date fosse uma estética/vibe, qual seria?</h3>
-<p style="margin-top:-10px;color:#555">Selecione a estética que melhor representa a experiência do date.</p>
-<button onclick="answer('vibe','diva pop')">🎤 Clipe de diva pop — dramático, estiloso e memorável</button>
-<button onclick="answer('vibe','show underground')">🤘 Show underground de metal/punk — meio caótico, mas muito autêntico</button>
-<button onclick="answer('vibe','ideia de tatuagem')">🖋️ Ideia de tatuagem — simples, mas com significado</button>
-<button onclick="answer('vibe','praia')">🌊 Final de tarde na praia — tranquilo e com boas conversas</button>
-<button onclick="answer('vibe','filme indie')">🎨 Cena de filme indie/artsy — estranho no começo, mas bonito</button>
-<button onclick="answer('vibe','piquenique lore')">🍓 Piquenique que virou lore — provavelmente vamos rir disso depois</button></div>
-
-
 <div class="question">
 
-<h3>3. O beijo no final foi:</h3>
+<h3>2. Sobre o que você mais curtiu conversar?</h3>
 
-<button onclick="answer('beijo','timing perfeito')">Timing perfeito</button>
-<button onclick="answer('beijo','demorou')">Demorou um pouco</button>
-<button onclick="answer('beijo','plot twist')">Plot twist inesperado</button>
-<button onclick="answer('beijo','esperado')">Eu já estava esperando</button>
+<button onclick="answer('conversa','vida')">🧠 Vida, universo e tudo mais</button>
+<button onclick="answer('conversa','aleatorio')">😂 Assuntos completamente aleatórios</button>
+<button onclick="answer('conversa','profundo')">🌌 Conversas profundas inesperadas</button>
+<button onclick="answer('conversa','tudo')">✨ Tudo fluiu naturalmente</button>
 
 </div>
 
 
+<!-- PERGUNTA 3 -->
 <div class="question">
 
-<h3>4. Qual foi o melhor momento?</h3>
+<h3>3. Se o nosso date fosse um conceito científico, qual seria?</h3>
 
-<button onclick="answer('momento','conversas')">As conversas</button>
-<button onclick="answer('momento','piquenique')">O piquenique</button>
-<button onclick="answer('momento','beijo')">O beijo</button>
-<button onclick="answer('momento','tudo')">Tudo junto</button>
+<button onclick="answer('ciencia','big bang')">💥 Big Bang — começou do nada e pode virar algo gigante</button>
+<button onclick="answer('ciencia','gravidade')">🪐 Gravidade — inexplicável mas te puxa de volta</button>
+<button onclick="answer('ciencia','multiverso')">🌌 Multiverso — em outra realidade já estamos no 3º date</button>
+<button onclick="answer('ciencia','quimica')">⚗️ Química — claramente rolou alguma reação</button>
+<button onclick="answer('ciencia','caos')">🌀 Teoria do caos — tudo aleatório mas fez sentido</button>
 
 </div>
 
 
+<!-- PERGUNTA 4 -->
+<div class="question">
+
+<h3>4. Se você tivesse que descrever esse date em uma frase:</h3>
+
+<button onclick="answer('frase','inesperado')">✨ inesperado e interessante</button>
+<button onclick="answer('frase','confortavel')">🌙 confortável e leve</button>
+<button onclick="answer('frase','curioso')">👀 curioso… quero investigar mais</button>
+<button onclick="answer('frase','evento')">💫 um evento canônico</button>
+
+</div>
+
+
+<!-- PERGUNTA FINAL -->
 <div class="question">
 
 <h3>5. Probabilidade de um segundo date:</h3>
@@ -141,17 +151,20 @@ margin-top:20px;
 </div>
 
 
+<!-- RESULTADO -->
 <div id="result">
 
 <h2 id="resultText"></h2>
 
 <p>Obrigado por participar da avaliação oficial do date.</p>
+<p>A desenvolvedora deste sistema provavelmente quer te ver de novo 👀</p>
 
-<img src="gato.png">
+<img src="gato.png" alt="gato tímido">
 
 </div>
 
 </div>
+
 
 <script>
 
@@ -174,16 +187,19 @@ function showResult(value){
 
 answers.probabilidade = value;
 
+/* ENVIO */
 fetch("https://script.google.com/macros/s/AKfycbxR4nZrifpfp77LM21T0XI29-bPjR1kgy383nPRdKpy_ElHFj4QDlVgqyw90xqCeIgxVA/exec",{
 method:"POST",
 body:new URLSearchParams({
-piquenique:answers.piquenique,
-vibe:answers.vibe,
-beijo:answers.beijo,
-momento:answers.momento,
-probabilidade:answers.probabilidade
+musica: answers.musica,
+conversa: answers.conversa,
+ciencia: answers.ciencia,
+frase: answers.frase,
+probabilidade: answers.probabilidade
 })
-});
+})
+.then(() => console.log("Respostas enviadas"))
+.catch(() => console.log("Erro ao enviar"));
 
 questions[currentQuestion].classList.remove("active");
 
@@ -191,13 +207,23 @@ let result = document.getElementById("result");
 let text = document.getElementById("resultText");
 
 if(value >= 75){
-text.innerHTML = "💘 Sistema detectou alta compatibilidade";
+text.innerHTML = `
+💘 Sistema detectou alta compatibilidade.<br><br>
+Resultado: boas vibes + conversa interessante.<br><br>
+<b>Status:</b> iniciando SegundoDate.exe
+`;
 }
 else if(value == 50){
-text.innerHTML = "🧠 Resultado inconclusivo";
+text.innerHTML = `
+🧠 Resultado inconclusivo.<br><br>
+Mais testes científicos são necessários... talvez outro date 👀
+`;
 }
 else{
-text.innerHTML = "⚠️ Compatibilidade baixa";
+text.innerHTML = `
+⚠️ Compatibilidade baixa.<br><br>
+Mas toda teoria precisa de mais testes 😌
+`;
 }
 
 result.style.display = "block";
